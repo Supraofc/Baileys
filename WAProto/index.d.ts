@@ -2688,6 +2688,9 @@ export namespace proto {
 
             /** UserAgent deviceExpId */
             deviceExpId?: (string|null);
+
+            /** UserAgent deviceType */
+            deviceType?: (proto.ClientPayload.UserAgent.DeviceType|null);
         }
 
         /** Represents a UserAgent. */
@@ -2740,6 +2743,9 @@ export namespace proto {
 
             /** UserAgent deviceExpId. */
             public deviceExpId: string;
+
+            /** UserAgent deviceType. */
+            public deviceType: proto.ClientPayload.UserAgent.DeviceType;
 
             /**
              * Creates a new UserAgent instance using the specified properties.
@@ -2926,6 +2932,15 @@ export namespace proto {
                  * @returns JSON object
                  */
                 public toJSON(): { [k: string]: any };
+            }
+
+            /** DeviceType enum. */
+            enum DeviceType {
+                PHONE = 0,
+                TABLET = 1,
+                DESKTOP = 2,
+                WEARABLE = 3,
+                VR = 4
             }
 
             /** Platform enum. */
@@ -4821,7 +4836,8 @@ export namespace proto {
             ANDROID_AMBIGUOUS = 17,
             WEAR_OS = 18,
             AR_WRIST = 19,
-            AR_DEVICE = 20
+            AR_DEVICE = 20,
+            UWP = 21
         }
     }
 
@@ -7808,6 +7824,9 @@ export namespace proto {
 
         /** Message ptvMessage */
         ptvMessage?: (proto.Message.IVideoMessage|null);
+
+        /** Message botInvokeMessage */
+        botInvokeMessage?: (proto.Message.IFutureProofMessage|null);
     }
 
     /** Represents a Message. */
@@ -7986,6 +8005,9 @@ export namespace proto {
 
         /** Message ptvMessage. */
         public ptvMessage?: (proto.Message.IVideoMessage|null);
+
+        /** Message botInvokeMessage. */
+        public botInvokeMessage?: (proto.Message.IFutureProofMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -8898,6 +8920,122 @@ export namespace proto {
              * @returns JSON object
              */
             public toJSON(): { [k: string]: any };
+        }
+
+        /** Properties of a BotFeedbackMessage. */
+        interface IBotFeedbackMessage {
+
+            /** BotFeedbackMessage messageKey */
+            messageKey?: (proto.IMessageKey|null);
+
+            /** BotFeedbackMessage kind */
+            kind?: (proto.Message.BotFeedbackMessage.BotFeedbackKind|null);
+
+            /** BotFeedbackMessage text */
+            text?: (string|null);
+        }
+
+        /** Represents a BotFeedbackMessage. */
+        class BotFeedbackMessage implements IBotFeedbackMessage {
+
+            /**
+             * Constructs a new BotFeedbackMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: proto.Message.IBotFeedbackMessage);
+
+            /** BotFeedbackMessage messageKey. */
+            public messageKey?: (proto.IMessageKey|null);
+
+            /** BotFeedbackMessage kind. */
+            public kind: proto.Message.BotFeedbackMessage.BotFeedbackKind;
+
+            /** BotFeedbackMessage text. */
+            public text: string;
+
+            /**
+             * Creates a new BotFeedbackMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns BotFeedbackMessage instance
+             */
+            public static create(properties?: proto.Message.IBotFeedbackMessage): proto.Message.BotFeedbackMessage;
+
+            /**
+             * Encodes the specified BotFeedbackMessage message. Does not implicitly {@link proto.Message.BotFeedbackMessage.verify|verify} messages.
+             * @param message BotFeedbackMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: proto.Message.IBotFeedbackMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified BotFeedbackMessage message, length delimited. Does not implicitly {@link proto.Message.BotFeedbackMessage.verify|verify} messages.
+             * @param message BotFeedbackMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: proto.Message.IBotFeedbackMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a BotFeedbackMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns BotFeedbackMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.Message.BotFeedbackMessage;
+
+            /**
+             * Decodes a BotFeedbackMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns BotFeedbackMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.Message.BotFeedbackMessage;
+
+            /**
+             * Verifies a BotFeedbackMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a BotFeedbackMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns BotFeedbackMessage
+             */
+            public static fromObject(object: { [k: string]: any }): proto.Message.BotFeedbackMessage;
+
+            /**
+             * Creates a plain object from a BotFeedbackMessage message. Also converts values to other types if specified.
+             * @param message BotFeedbackMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: proto.Message.BotFeedbackMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this BotFeedbackMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
+        namespace BotFeedbackMessage {
+
+            /** BotFeedbackKind enum. */
+            enum BotFeedbackKind {
+                BOT_FEEDBACK_POSITIVE = 0,
+                BOT_FEEDBACK_NEGATIVE_GENERIC = 1,
+                BOT_FEEDBACK_NEGATIVE_HELPFUL = 2,
+                BOT_FEEDBACK_NEGATIVE_INTERESTING = 3,
+                BOT_FEEDBACK_NEGATIVE_ACCURATE = 4,
+                BOT_FEEDBACK_NEGATIVE_SAFE = 5,
+                BOT_FEEDBACK_NEGATIVE_OTHER = 6
+            }
         }
 
         /** Properties of a ButtonsMessage. */
@@ -17300,6 +17438,9 @@ export namespace proto {
 
             /** ProtocolMessage peerDataOperationRequestResponseMessage */
             peerDataOperationRequestResponseMessage?: (proto.Message.IPeerDataOperationRequestResponseMessage|null);
+
+            /** ProtocolMessage botFeedbackMessage */
+            botFeedbackMessage?: (proto.Message.IBotFeedbackMessage|null);
         }
 
         /** Represents a ProtocolMessage. */
@@ -17352,6 +17493,9 @@ export namespace proto {
 
             /** ProtocolMessage peerDataOperationRequestResponseMessage. */
             public peerDataOperationRequestResponseMessage?: (proto.Message.IPeerDataOperationRequestResponseMessage|null);
+
+            /** ProtocolMessage botFeedbackMessage. */
+            public botFeedbackMessage?: (proto.Message.IBotFeedbackMessage|null);
 
             /**
              * Creates a new ProtocolMessage instance using the specified properties.
@@ -17440,7 +17584,9 @@ export namespace proto {
                 SHARE_PHONE_NUMBER = 11,
                 MESSAGE_EDIT = 14,
                 PEER_DATA_OPERATION_REQUEST_MESSAGE = 16,
-                PEER_DATA_OPERATION_REQUEST_RESPONSE_MESSAGE = 17
+                PEER_DATA_OPERATION_REQUEST_RESPONSE_MESSAGE = 17,
+                REQUEST_WELCOME_MESSAGE = 18,
+                BOT_FEEDBACK_MESSAGE = 19
             }
         }
 
@@ -19321,6 +19467,9 @@ export namespace proto {
 
         /** MessageContextInfo messageAddOnDurationInSecs */
         messageAddOnDurationInSecs?: (number|null);
+
+        /** MessageContextInfo botMessageSecret */
+        botMessageSecret?: (Uint8Array|null);
     }
 
     /** Represents a MessageContextInfo. */
@@ -19346,6 +19495,9 @@ export namespace proto {
 
         /** MessageContextInfo messageAddOnDurationInSecs. */
         public messageAddOnDurationInSecs: number;
+
+        /** MessageContextInfo botMessageSecret. */
+        public botMessageSecret: Uint8Array;
 
         /**
          * Creates a new MessageContextInfo instance using the specified properties.
@@ -19521,6 +19673,108 @@ export namespace proto {
 
         /**
          * Converts this MessageKey to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a MessageSecretMessage. */
+    interface IMessageSecretMessage {
+
+        /** MessageSecretMessage version */
+        version?: (number|null);
+
+        /** MessageSecretMessage encIv */
+        encIv?: (Uint8Array|null);
+
+        /** MessageSecretMessage encPayload */
+        encPayload?: (Uint8Array|null);
+    }
+
+    /** Represents a MessageSecretMessage. */
+    class MessageSecretMessage implements IMessageSecretMessage {
+
+        /**
+         * Constructs a new MessageSecretMessage.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IMessageSecretMessage);
+
+        /** MessageSecretMessage version. */
+        public version: number;
+
+        /** MessageSecretMessage encIv. */
+        public encIv: Uint8Array;
+
+        /** MessageSecretMessage encPayload. */
+        public encPayload: Uint8Array;
+
+        /**
+         * Creates a new MessageSecretMessage instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns MessageSecretMessage instance
+         */
+        public static create(properties?: proto.IMessageSecretMessage): proto.MessageSecretMessage;
+
+        /**
+         * Encodes the specified MessageSecretMessage message. Does not implicitly {@link proto.MessageSecretMessage.verify|verify} messages.
+         * @param message MessageSecretMessage message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IMessageSecretMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified MessageSecretMessage message, length delimited. Does not implicitly {@link proto.MessageSecretMessage.verify|verify} messages.
+         * @param message MessageSecretMessage message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IMessageSecretMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a MessageSecretMessage message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns MessageSecretMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.MessageSecretMessage;
+
+        /**
+         * Decodes a MessageSecretMessage message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns MessageSecretMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.MessageSecretMessage;
+
+        /**
+         * Verifies a MessageSecretMessage message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a MessageSecretMessage message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns MessageSecretMessage
+         */
+        public static fromObject(object: { [k: string]: any }): proto.MessageSecretMessage;
+
+        /**
+         * Creates a plain object from a MessageSecretMessage message. Also converts values to other types if specified.
+         * @param message MessageSecretMessage
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.MessageSecretMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this MessageSecretMessage to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
